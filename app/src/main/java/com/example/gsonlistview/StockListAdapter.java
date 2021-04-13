@@ -27,7 +27,7 @@ public class StockListAdapter extends ArrayAdapter<Stock> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.recycler_view_item, parent, false);
         }
-        // Lookup view for data population
+        // Lookup views for data population
         TextView ltd = (TextView) convertView.findViewById(R.id.ltd);
         TextView cp = (TextView) convertView.findViewById(R.id.cp);
         TextView symbol = (TextView) convertView.findViewById(R.id.symbol);

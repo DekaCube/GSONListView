@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -59,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void doView(){
         exampleAdapter = new StockListAdapter(this,theStocks);
+        example.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Add code here to do what you want when an Item is clicked
+                Toast.makeText(MainActivity.this, theStocks.get(i).getSymbol().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
         example.setAdapter(exampleAdapter);
 
     }
