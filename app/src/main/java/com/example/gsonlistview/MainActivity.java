@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,15 +17,15 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private final String[] stocks = {"IBM","AAPL","GOOGL","AMZN","TSLA"};
     private ArrayList<Stock> theStocks;
-    RecyclerView example;
-    StockRecyclerAdapter exampleAdapter;
+    ListView example;
+    StockListAdapter exampleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         theStocks = new ArrayList<Stock>();
-        example = findViewById(R.id.recycler);
+        example = findViewById(R.id.example);
 
         for(String s : stocks) {
             String url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={{REPLACE_KEY}}&apikey= {}".replace("{{REPLACE_KEY}}",s);
@@ -57,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doView(){
-        exampleAdapter = new StockRecyclerAdapter(theStocks);
+        exampleAdapter = new StockListAdapter(this,theStocks);
         example.setAdapter(exampleAdapter);
-        example.setLayoutManager(new LinearLayoutManager(this));
+
     }
 }
